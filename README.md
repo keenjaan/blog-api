@@ -2,7 +2,7 @@
 
 > 准备：下载swagger-ui和swagger-edit。目录如下：
 
-![目录](1.png)
+![目录](./screenshots/1.png)
 
 1、启动swagger-editor：
 
