@@ -1,5 +1,24 @@
 ### 使用说明
 
+该项目为个人博客的api接口部分，包含后端接口部分和接口文档部分。后端接口使用的是express + mongolass，接口文档使用的是swagger-ui。
+
+运行本项目除了clone该项目的代码安装依赖外，还要在本地电脑安装mongodb，并且成功启动mongodb服务。本项目才能正常启动。
+
+```bash
+## 克隆项目
+git clone git@github.com:keenjaan/blog-api.git
+
+## 安装依赖
+cd blog-api
+npm install
+
+## 全局安装supervisor
+npm install supervisor -g // 可以实时监听本地文件改变重启服务，便于调试。
+
+## 运行项目
+supervisor index.js
+```
+
 > 准备：下载swagger-ui和swagger-edit。目录如下：
 
 ![目录](./screenshots/1.png)
