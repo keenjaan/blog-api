@@ -1,0 +1,598 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "version": "0.0.0",
+        "title": "this is blog api doc"
+    },
+    "host": "127.0.0.1:3089",
+    "basePath": "/api",
+    "produces": [
+        "application/json"
+    ],
+    "paths": {
+        "/article/articleList": {
+            "get": {
+                "summary": "find all article",
+                "description": "Gets `Article` objects.\nOptional query param of **size** determines\nsize of returned array\n",
+                "parameters": [
+                    {
+                        "name": "page",
+                        "in": "query",
+                        "description": "page number of list",
+                        "required": true,
+                        "type": "number",
+                        "format": "double"
+                    },
+                    {
+                        "name": "limit",
+                        "in": "query",
+                        "description": "list number of one page",
+                        "required": true,
+                        "type": "number",
+                        "format": "double"
+                    },
+                    {
+                        "name": "authorization",
+                        "in": "header",
+                        "description": "token valid",
+                        "type": "string"
+                    }
+                ],
+                "tags": [
+                    "article"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "schema": {
+                            "$ref": "#/definitions/articleList"
+                        }
+                    }
+                }
+            }
+        },
+        "/article/getOneArticle": {
+            "get": {
+                "summary": "find all article",
+                "description": "Gets `Article` objects.\nOptional query param of **size** determines\nsize of returned array\n",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "query",
+                        "description": "id of article",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "tags": [
+                    "article"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "number",
+                                    "description": "code"
+                                },
+                                "oneArticle": {
+                                    "$ref": "#/definitions/article"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/article/getArticleListByClassify": {
+            "get": {
+                "summary": "find articles by classify",
+                "description": "Gets `Article` objects.\nOptional query param of **size** determines\nsize of returned array\n",
+                "parameters": [
+                    {
+                        "name": "page",
+                        "in": "query",
+                        "description": "page number of list",
+                        "required": true,
+                        "type": "number",
+                        "format": "integer"
+                    },
+                    {
+                        "name": "limit",
+                        "in": "query",
+                        "description": "list number of one page",
+                        "required": true,
+                        "type": "number",
+                        "format": "integer"
+                    },
+                    {
+                        "name": "classify",
+                        "in": "query",
+                        "description": "classify",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "tags": [
+                    "article"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "schema": {
+                            "$ref": "#/definitions/articleList"
+                        }
+                    }
+                }
+            }
+        },
+        "/article/create": {
+            "post": {
+                "summary": "create an article",
+                "description": "Gets `Article` objects.\nOptional query param of **size** determines\nsize of returned array\n",
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "description": "page number of list",
+                        "required": true,
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "title": {
+                                    "type": "string",
+                                    "description": "this is article title"
+                                },
+                                "classify": {
+                                    "type": "string",
+                                    "description": "this is article class"
+                                },
+                                "content": {
+                                    "type": "string",
+                                    "description": "this is article content"
+                                },
+                                "contentToMark": {
+                                    "type": "string",
+                                    "description": "this is article markdowncontent"
+                                }
+                            }
+                        }
+                    }
+                ],
+                "tags": [
+                    "article"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "message": {
+                                    "type": "string",
+                                    "description": "this is create back message"
+                                },
+                                "code": {
+                                    "type": "number",
+                                    "description": "this is code"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/article/remove": {
+            "post": {
+                "summary": "remove an classify",
+                "description": "remove an classify\n",
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "id": {
+                                    "type": "string",
+                                    "description": "class id"
+                                }
+                            }
+                        }
+                    }
+                ],
+                "tags": [
+                    "article"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful responses",
+                        "schema": {
+                            "$ref": "#/definitions/operationSuccess"
+                        }
+                    }
+                }
+            }
+        },
+        "/article/edit": {
+            "post": {
+                "summary": "remove an classify",
+                "description": "remove an classify\n",
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "id": {
+                                    "type": "string",
+                                    "description": "class id"
+                                },
+                                "classify": {
+                                    "type": "string",
+                                    "description": "class"
+                                },
+                                "title": {
+                                    "type": "string",
+                                    "description": "title"
+                                },
+                                "content": {
+                                    "type": "string",
+                                    "description": "content"
+                                },
+                                "contentToMark": {
+                                    "type": "string",
+                                    "description": "contentToMark"
+                                }
+                            }
+                        }
+                    }
+                ],
+                "tags": [
+                    "article"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful responses",
+                        "schema": {
+                            "$ref": "#/definitions/operationSuccess"
+                        }
+                    }
+                }
+            }
+        },
+        "/classify/create": {
+            "post": {
+                "summary": "create an classify",
+                "description": "this is an `create` an classify\n",
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "description": "create an new classify",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "classify": {
+                                    "type": "string",
+                                    "example": "react",
+                                    "description": "this is the class"
+                                }
+                            }
+                        }
+                    }
+                ],
+                "tags": [
+                    "classify"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "message": {
+                                    "type": "string",
+                                    "description": "this is create back message"
+                                },
+                                "code": {
+                                    "type": "number",
+                                    "description": "this is code"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/classify/lists": {
+            "get": {
+                "summary": "get all classify",
+                "description": "get all class\n",
+                "tags": [
+                    "classify"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "schema": {
+                            "$ref": "#/definitions/classifyObj"
+                        }
+                    }
+                }
+            }
+        },
+        "/classify/remove": {
+            "post": {
+                "summary": "remove an classify",
+                "description": "remove an classify\n",
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "id": {
+                                    "type": "string",
+                                    "description": "class id"
+                                }
+                            }
+                        }
+                    }
+                ],
+                "tags": [
+                    "classify"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful responses",
+                        "schema": {
+                            "$ref": "#/definitions/operationSuccess"
+                        }
+                    }
+                }
+            }
+        },
+        "/classify/edit": {
+            "post": {
+                "summary": "edit an classify",
+                "description": "edit an classify\n",
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "id": {
+                                    "type": "string",
+                                    "description": "class id"
+                                },
+                                "classify": {
+                                    "type": "string",
+                                    "description": "class"
+                                }
+                            }
+                        }
+                    }
+                ],
+                "tags": [
+                    "classify"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful responses",
+                        "schema": {
+                            "$ref": "#/definitions/operationSuccess"
+                        }
+                    }
+                }
+            }
+        },
+        "/user/reg": {
+            "post": {
+                "summary": "create an article",
+                "description": "Gets `Article` objects.\nOptional query param of **size** determines\nsize of returned array\n",
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "description": "page number of list",
+                        "required": true,
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "account": {
+                                    "type": "string",
+                                    "description": "this is article title"
+                                },
+                                "checkPass": {
+                                    "type": "string",
+                                    "description": "this is article class"
+                                }
+                            }
+                        }
+                    }
+                ],
+                "tags": [
+                    "user"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "token": {
+                                    "type": "string",
+                                    "description": "token"
+                                },
+                                "code": {
+                                    "type": "number",
+                                    "description": "this is code"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/user/login": {
+            "post": {
+                "summary": "create an article",
+                "description": "Gets `Article` objects.\nOptional query param of **size** determines\nsize of returned array\n",
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "description": "page number of list",
+                        "required": true,
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "account": {
+                                    "type": "string",
+                                    "description": "this is article title"
+                                },
+                                "checkPass": {
+                                    "type": "string",
+                                    "description": "this is article class"
+                                }
+                            }
+                        }
+                    }
+                ],
+                "tags": [
+                    "user"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "token": {
+                                    "type": "string",
+                                    "description": "token"
+                                },
+                                "code": {
+                                    "type": "number",
+                                    "description": "this is code"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "articleList": {
+            "type": "object",
+            "properties": {
+                "articleList": {
+                    "type": "array",
+                    "description": "arrList",
+                    "items": {
+                        "$ref": "#/definitions/article"
+                    }
+                },
+                "totalPage": {
+                    "type": "number",
+                    "description": "this is total page"
+                },
+                "hasNext": {
+                    "type": "boolean",
+                    "description": "this is the is has next"
+                },
+                "hasPrev": {
+                    "type": "boolean",
+                    "description": "this is the is has privious"
+                }
+            }
+        },
+        "article": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "string",
+                    "description": "this is the id"
+                },
+                "classify": {
+                    "type": "string",
+                    "description": "this is the classify"
+                },
+                "title": {
+                    "type": "string",
+                    "description": "this is the article title"
+                },
+                "content": {
+                    "type": "string",
+                    "description": "this is the content"
+                },
+                "contentToMark": {
+                    "type": "string",
+                    "description": "this is the contentmarkdown"
+                },
+                "create_at": {
+                    "type": "string",
+                    "description": "this is the create time"
+                }
+            }
+        },
+        "classify": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "string",
+                    "description": "class id"
+                },
+                "classify": {
+                    "type": "string",
+                    "description": "class"
+                },
+                "create_at": {
+                    "type": "string",
+                    "description": "create time"
+                }
+            }
+        },
+        "classifyObj": {
+            "type": "object",
+            "properties": {
+                "code": {
+                    "type": "string",
+                    "description": "this is code"
+                },
+                "lists": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/classify"
+                    }
+                }
+            }
+        },
+        "operationSuccess": {
+            "type": "object",
+            "properties": {
+                "code": {
+                    "type": "string",
+                    "description": "this is code"
+                },
+                "message": {
+                    "type": "string",
+                    "description": "this is operation message"
+                }
+            }
+        }
+    }
+}
