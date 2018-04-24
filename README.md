@@ -105,3 +105,13 @@ swagger.json中有个host字段，要想接口文档能调通地址，需此host
 **本项目结构：**
 
 ![图片](./screenshots/1.png)
+
+
+
+#### 接口文档截图
+
+![图片](./screenshots/2.png)
+
+![图片](./screenshots/3.png)
+
+![图片](./screenshots/4.png)

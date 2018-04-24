@@ -9,7 +9,7 @@ app.use(bodyParser.json());
 
 // access control allow origin
 
-app.all('/api', function (req, res, next) {
+app.all('/api/*', function (req, res, next) {
 	res.header('Access-Control-Allow-Origin', '*');
 	res.header('Access-Control-Allow-Headers', 'Authorization, Content-Type, api_key');
 	res.header('Access-Control-Allow-Methods', 'PUT, POST, GET, DELETE, OPTIONS');

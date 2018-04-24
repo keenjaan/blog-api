@@ -157,4 +157,29 @@ router.post('/article/edit', function (req, res, next) {
   })
 })
 
+// remove an article by id
+router.post('/article/remove', checkToken, function (req, res, next) {
+  const id = req.body.id
+  if (requiredParamVaild({id}, res)) {
+		return
+	}
+  api.removeOneArticle(id)
+    .then(({result: {ok, n}}) => {
+      if (ok && n > 0) {
+        res.send({
+          code: 200,
+          message: 'delete successful'
+        })
+      } else {
+        throw new Error('the article is not exist');
+      }
+    })
+    .catch(err => {
+      res.send({
+        code: -200,
+        message: err.toString()
+      })
+    })
+})
+
 module.exports = router
