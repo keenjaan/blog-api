@@ -24,13 +24,13 @@
 
 
 
-### 使用说明
+#### 使用说明
 
 该项目为个人博客的api接口部分，包含后端接口部分和接口文档部分。后端接口使用的是express + mongolass，接口文档使用的是swagger-ui。
 
 运行本项目除了clone该项目的代码安装依赖外，还要在本地电脑安装mongodb，并且成功启动mongodb服务。本项目才能正常启动。
 
-关于mongodb安装网上很多教程，自己有很多教程，在window上装mongodb有很多坑，装完最好注册成服务。
+关于mongodb安装网上很多教程，自己去google，在window上装mongodb有很多坑，装完最好注册成服务。
 
 ```bash
 ## 克隆项目
